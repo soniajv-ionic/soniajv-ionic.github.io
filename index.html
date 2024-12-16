@@ -3,9 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pelis</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Homepage: soniajv-ionic</h1>
+
+    <div class="header">
+        <div>
+            <input type="text" id="titulo" placeholder="Título de película">
+            <button onclick="filtrarPorTitulo()">Buscar</button>
+        </div>
+        <div>
+            <input type="text" id="actor" placeholder="Actor">
+            <button onclick="filtrarPorActor()">Buscar</button>
+        </div>
+        <div>
+            <select id="genero">
+                <option value="">Selecciona Género</option>
+                <option value="Acción">Acción</option>
+                <option value="Comedia">Comedia</option>
+                <option value="Drama">Drama</option>
+                <option value="Terror">Terror</option>
+            </select>
+        </div>
+        <div>
+            <input type="number" id="ano" placeholder="Año">
+            <button onclick="filtrarPorAno()">Buscar</button>
+        </div>
+        <div>
+            <input type="number" id="duracion" placeholder="Duración">
+            <button onclick="ordenarPorDuracion()">Ordenar</button>
+        </div>
+    </div>
+
+    <div class="movie-container" id="movieContainer">
+        <!-- Fichas de películas -->
+        <div class="movie-card">
+            <img src="https://via.placeholder.com/200x300?text=Película+1" alt="Película 1">
+            <h3>Título: Película 1</h3>
+            <p>Director: Director 1</p>
+            <p>Género: Acción</p>
+            <p>Año: 2020</p>
+            <p>Duración: 120 min</p>
+        </div>
+        <div class="movie-card">
+            <img src="https://via.placeholder.com/200x300?text=Película+2" alt="Película 2">
+            <h3>Título: Película 2</h3>
+            <p>Director: Director 2</p>
+            <p>Género: Comedia</p>
+            <p>Año: 2019</p>
+            <p>Duración: 90 min</p>
+        </div>
+        <div class="movie-card">
+            <img src="https://via.placeholder.com/200x300?text=Película+3" alt="Película 3">
+            <h3>Título: Película 3</h3>
+            <p>Director: Director 3</p>
+            <p>Género: Drama</p>
+            <p>Año: 2021</p>
+            <p>Duración: 150 min</p>
+        </div>
+        <div class="movie-card">
+            <img src="https://via.placeholder.com/200x300?text=Película+4" alt="Película 4">
+            <h3>Título: Película 4</h3>
+            <p>Director: Director 4</p>
+            <p>Género: Terror</p>
+            <p>Año: 2022</p>
+            <p>Duración: 105 min</p>
+        </div>
+        <div class="movie-card">
+            <img src="https://via.placeholder.com/200x300?text=Película+4" alt="Película 5">
+            <h3>Título: Película 5</h3>
+            <p>Director: Director 5</p>
+            <p>Género: Terror</p>
+            <p>Año: 2023</p>
+            <p>Duración: 121 min</p>
+        </div>
+       
+    </div>
+
+
+
 </body>
 </html>
