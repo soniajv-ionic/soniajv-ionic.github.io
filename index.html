@@ -1,48 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pelis</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="header">
-        <div>
-            <input type="text" id="titulo" placeholder="Título de película">
-            <button id="btn-titulo">Buscar</button>
-        </div>
-        <div>
-            <input type="text" id="actor" placeholder="Actor">
-            <button>Buscar</button>
-        </div>
-        <div>
-            <select id="genero">
-                <option value="">Selecciona Género</option>
-                <option value="Acción">Acción</option>
-                <option value="Comedia">Comedia</option>
-                <option value="Drama">Drama</option>
-                <option value="Terror">Terror</option>
-            </select>
-        </div>
-        <div>
-            <input type="number" id="movieYear" placeholder="Año">
-            <button>Buscar</button>
-        </div>
-        <div>
-            <input type="number" id="duracion" placeholder="Duración">
-            <button>Ordenar</button>
-        </div>
+      <div>
+        <input type="text" id="title-input" placeholder="Título de película" />
+        <button id="title-button">Buscar</button>
+      </div>
+      <div>
+        <input type="text" id="actor-input" placeholder="Actor" />
+        <button id="actor-button">Buscar</button>
+      </div>
+      <div>
+        <select id="genre-select">
+          <option value="">Selecciona Género</option>
+          <option value="Action">Acción</option>
+          <option value="Comedy">Comedia</option>
+          <option value="Drama">Drama</option>
+          <option value="Terror">Terror</option>
+          <option value="Sci-Fi">Ciencia-Ficción</option>
+        </select>
+      </div>
+      <div>
+        <input type="number" id="year-input" placeholder="Año" />
+        <button id="year-button">Buscar</button>
+      </div>
+      <div>
+        <input type="number" id="runtime-input" placeholder="Duración" />
+        <button id="runtime-input">Ordenar</button>
+      </div>
     </div>
 
-    <div><h1>Movies!!</h1></div>
+    <div class="page-title"><h1>Movies!!</h1></div>
 
     <div class="movie-container" id="movieContainer">
-        <!-- Fichas de película
+      <!-- Fichas de película
         <div class="movie-card">
             <img src="https://via.placeholder.com/200x300?text=Película+1" alt="Película 1">
-            <h3>Película 1</h3>
+            <h2>Película 1</h2>
             <p><strong>Director: </strong> Director 1</p>
             <p><strong>Género: </strong>Acción</p>
             <p><strong>Año: </strong> 020</p>
@@ -50,10 +50,7 @@
         </div>
        -->
     </div>
-
-
-
-</body>
+  </body>
 </html>
 
 <script src="./myhttp.js"></script>
