@@ -1,14 +1,91 @@
-const URL='https://soniajv-ionic.github.io/movies-250.json';
+const URL = 'https://soniajv-ionic.github.io/movies-250.json';
+
+let movies;
+
+function generateCard(movie) {
+
+    //1. Crear la tarjeta
+    const newCard = document.createElement("div");//Crea un elemento de tipo div
+    newCard.setAttribute("class", "movie-card");
+    //2. Crear la imagen
+    const newImage = document.createElement("img");
+    newImage.setAttribute("src", movie.Poster);
+    newImage.setAttribute("alt", `Póster de la película ${movie.Title}`);
+    newCard.appendChild(newImage);
+    //3. Crear el contenido de la tarjeta
+    const newContent = document.createElement("div");
+    newContent.setAttribute("class", "card-content");
+    newCard.appendChild(newContent);
+    //4. Crear el h3 del título <h3>El Padrino</h3>
+    const newTitle = document.createElement("h3");
+    newTitle.textContent = movie.Title;
+    newContent.appendChild(newTitle);
+    //5. Crear el director <p><strong>Director:</strong> Francis Ford Coppola</p>
+    const newParagraphDirector = document.createElement("p");
+    const newBoldDirector = document.createElement("strong");
+    newParagraphDirector.appendChild(newBoldDirector);
+    newBoldDirector.textContent = "Director: ";
+    newContent.appendChild(newParagraphDirector);
+    const nameDirector = document.createTextNode(movie.Director)
+    newParagraphDirector.appendChild(nameDirector);
+    // 6. Año
+    const newParagraphYear = document.createElement("p");
+    const newBoldYear = document.createElement("strong");
+    newParagraphYear.appendChild(newBoldYear);
+    newBoldYear.textContent = "Año: ";
+    newContent.appendChild(newParagraphYear);
+    const movieYear = document.createTextNode(movie.Year)
+    newParagraphYear.appendChild(movieYear);
+    // 7. Genero
+    const newParagraphGenre = document.createElement("p");
+    const newBoldGenre = document.createElement("strong");
+    newParagraphGenre.appendChild(newBoldGenre);
+    newBoldGenre.textContent = "Género: ";
+    newContent.appendChild(newParagraphGenre);
+    const movieGenre = document.createTextNode(movie.Genre)
+    newParagraphGenre.appendChild(movieGenre);
+    // 8. Duración
+    const newParagraphRuntime = document.createElement("p");
+    const newBoldRuntime = document.createElement("strong");
+    newParagraphRuntime.appendChild(newBoldRuntime);
+    newBoldRuntime.textContent = "Duración: ";
+    newContent.appendChild(newParagraphRuntime);
+    const runtime = document.createTextNode(movie.Runtime)
+    newParagraphRuntime.appendChild(runtime);
+
+
+    document.querySelector('#movieContainer').appendChild(newCard);
+}
 
 function processMovie(data) {
-    const movies = data.movies;
-    movies.array.forEach(m => {
-        console.log(m.Title);
-    });
-    
-    for (movie of movies) {
-        console.log(`Director: ${movie.Director}`);
+    movies = data.movies;
+    //FORMAS DE RECORRER ARRAYS Y OBJETOS
+    /*
+    //Recorremos con bucle for tradicional
+    for (let i=0;i<peliculas.length;i++){
+        console.log("Duration:" + peliculas[i].Runtime);
     }
+    //Recorremos con bucle for-of
+    for (pelicula of peliculas) {
+        console.log("Director:" + pelicula.Director);
+    }
+    //Recorremos con el método forEach
+    peliculas.forEach(pelicula => {
+        console.log("Título:" + pelicula.Title);
+    });
+    //Recorre el contenido de un objeto
+    for (atributo in peliculas[0]){
+        console.log(atributo, peliculas[0][atributo]);
+    }
+    */
+    movies.forEach(movie => {
+        generateCard(movie);
+    });
+}
+
+function clearCards(){
+    //document.querySelector("#container").innerHTML="";//Chapuza
+    document.querySelectorAll(".movie-card").forEach(card=>card.remove());//Elegante
 }
 
 doGetRequest(URL, processMovie);

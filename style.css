@@ -2,23 +2,28 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #370303;
 }
+
 .header {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px 20px; 
+    padding: 10px 20px;
     background-color: #333;
     color: white;
-    gap: 10px; 
+    gap: 10px;
     flex-wrap: wrap;
 }
-.header input, .header select, .header button {
-padding: 5px 10px;
-font-size: 14px;
-margin-right: 10px; 
+
+.header input,
+.header select,
+.header button {
+    padding: 5px 10px;
+    font-size: 14px;
+    margin-right: 10px;
 }
+
 .header button {
     cursor: pointer;
     background-color: #007bff;
@@ -26,33 +31,74 @@ margin-right: 10px;
     border: none;
     border-radius: 5px;
 }
+
 .header button:hover {
     background-color: #0056b3;
 }
+
 .movie-card {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 10px;
     padding: 10px;
-    width: 200px;
-    background-color: white;
+    width: 300px;
+    background-color: rgb(99, 99, 99);
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+
 .movie-card img {
     width: 100%;
-    height: 300px;
+    height: 500px;
     object-fit: cover;
     border-radius: 5px;
 }
-.movie-card h3, .movie-card p {
+
+.movie-card p {
     margin: 5px 0;
 }
+
+.movie-card h3 {
+    word-wrap: break-word;
+    /* Ensures the title breaks and wraps onto the next line */
+    white-space: normal;
+    /* Ensures text wraps normally */
+    overflow-wrap: break-word;
+    /* Optional: Another property to ensure long words break */
+}
+
 .movie-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 tarjetas por fila */
+    gap: 20px;
     padding: 20px;
-    gap: 20px; 
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-items: center;
+}
+
+/* Responsividad */
+@media (max-width: 1200px) {
+    .movie-container {
+        grid-template-columns: repeat(4, 1fr); /* 4 columnas en pantallas más pequeñas */
+    }
+}
+
+@media (max-width: 900px) {
+    .movie-container {
+        grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+    }
+}
+
+@media (max-width: 600px) {
+    .movie-container {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+    }
+}
+
+@media (max-width: 400px) {
+    .movie-container {
+        grid-template-columns: 1fr; /* 1 columna */
+    }
 }
