@@ -71,12 +71,20 @@ body {
   /* Ensures text wraps normally */
   overflow-wrap: break-word;
   /* Optional: Another property to ensure long words break */
-  text-align: center; /* This centers the text horizontally */
+  text-align: center;
+  /* This centers the text horizontally */
+}
+
+.movie-counter {
+  background-color: red;
+  padding: 5px;
+  border-radius: 5px;
 }
 
 .movie-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 columnas en pantallas grandes */
+  grid-template-columns: repeat(4, 1fr);
+  /* 4 columnas en pantallas grandes */
   width: 100%;
   gap: 20px;
   padding: 20px;
@@ -89,15 +97,15 @@ body {
 /* Responsividad */
 @media (max-width: 900px) {
   #container {
-    grid-template-columns: repeat(
-      3,
-      1fr
-    ); /* 3 tarjetas por fila en pantallas medianas */
+    grid-template-columns: repeat(3,
+        1fr);
+    /* 3 tarjetas por fila en pantallas medianas */
   }
 }
 
 @media (max-width: 600px) {
   #container {
-    grid-template-columns: 1fr; /* 1 tarjeta por fila en pantallas pequeñas */
+    grid-template-columns: 1fr;
+    /* 1 tarjeta por fila en pantallas pequeñas */
   }
 }

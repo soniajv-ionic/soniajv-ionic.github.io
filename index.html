@@ -18,22 +18,24 @@
       </div>
       <div>
         <select id="genre-select">
-          <option value="">Selecciona Género</option>
-          <option value="Action">Acción</option>
-          <option value="Comedy">Comedia</option>
-          <option value="Drama">Drama</option>
-          <option value="Terror">Terror</option>
-          <option value="Sci-Fi">Ciencia-Ficción</option>
+         <!--<option value="">Selecciona Género</option> -->
+
         </select>
       </div>
       <div>
-        <input type="number" id="year-input" placeholder="Año" />
+        <input type="number" id="year-input" placeholder="Año" min="1900" max="2030"/>
         <button id="year-button">Buscar</button>
       </div>
       <div>
-        <input type="number" id="runtime-input" placeholder="Duración" />
-        <button id="runtime-input">Ordenar</button>
+        <label for="runtime-radio1">
+        <input type="radio" id="runtime-radio1" name="runtime" value="runtime-asc" />Duración ascendente
+      </label>
+      <label for="runtime-radio2">
+        <input type="radio" id="runtime-radio2" name="runtime" value="runtime-desc" />Duración descendente
+      </label>
+        <button id="runtime-button">Ordenar</button>
       </div>
+      <span class="movie-counter">250</span>
     </div>
 
     <div class="page-title"><h1>Movies!!</h1></div>

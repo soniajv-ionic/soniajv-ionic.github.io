@@ -55,10 +55,25 @@ function generateCard(movie) {
   document.querySelector("#movieContainer").appendChild(newCard);
 }
 
+function processGenre(movie) {
+  let setGenre = new Set();
+  let genres = movie.Genre.split(',').map(genre =>genre.trim());
+  genres.forEach(genre => setGenre.add(genre));
+
+  setGenre.forEach(genre => {
+    let genreOption = document.createElement('option');
+    genreOption.setAttribute('value', genre.toLowerCase());
+    genreOption.textContent=genre;
+    document.querySelector('#genre-select').appendChild(genreOption);
+  })
+}
+
 function processMovie(data) {
-  movies = data.movies;
-  movies.forEach((movie) => {
+
+  data.movies.forEach((movie) => {
+
     generateCard(movie);
+    generareGenre(movie)
   });
 }
 
