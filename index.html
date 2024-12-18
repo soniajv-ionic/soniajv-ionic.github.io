@@ -18,21 +18,37 @@
       </div>
       <div>
         <select id="genre-select">
-         <!--<option value="">Selecciona Género</option> -->
-
+          <option value="">Selecciona Género</option>
+          <!--<option value="Comedy">Comedia</option>-->
         </select>
       </div>
       <div>
-        <input type="number" id="year-input" placeholder="Año" min="1900" max="2030"/>
+        <input
+          type="number"
+          id="year-input"
+          placeholder="Año"
+          min="1895"
+          max="2030"
+        />
         <button id="year-button">Buscar</button>
       </div>
       <div>
         <label for="runtime-radio1">
-        <input type="radio" id="runtime-radio1" name="runtime" value="runtime-asc" />Duración ascendente
-      </label>
-      <label for="runtime-radio2">
-        <input type="radio" id="runtime-radio2" name="runtime" value="runtime-desc" />Duración descendente
-      </label>
+          <input
+            type="radio"
+            id="runtime-radio1"
+            name="runtime"
+            value="runtime-asc"
+          />Duración ascendente
+        </label>
+        <label for="runtime-radio2">
+          <input
+            type="radio"
+            id="runtime-radio2"
+            name="runtime"
+            value="runtime-desc"
+          />Duración descendente
+        </label>
         <button id="runtime-button">Ordenar</button>
       </div>
       <span class="movie-counter">250</span>

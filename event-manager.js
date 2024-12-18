@@ -1,65 +1,60 @@
-document.querySelector("#title-button").addEventListener("click", () => {
+/**
+ * Función de búsqueda
+ *
+ * @param {*} idSearchComponent Nombre del elemento en el que está el texto de búsqueda
+ * @param {*} nameAttributeSearch Nombre del atributo del JSON sobre el que hay que buscar
+ */
+function filterElements(idSearchComponent, nameAtributeSearch) {
   clearCards();
-  const searchText = document.querySelector("#title-input").value;
-  const filteredMovies = movies.filter((movie) =>
-    movie.Title.toUpperCase().includes(searchText.trim().toUpperCase())
+  const searchText = document.querySelector(idSearchComponent).value;
+  filteredMovies = allMovies.filter((movie) =>
+    movie[nameAtributeSearch]
+      .toUpperCase()
+      .includes(searchText.trim().toUpperCase())
   );
-  /*filteredMovies.forEach((movie) => {
+  filteredMovies.forEach((movie) => {
     generateCard(movie);
-  }); */
-  filteredMovies.map(generateCard);
+  });
+  //filteredMovies.map(generateCard);
+  // Se podria utilizar el map, pero no seria del todo correcto, ya que no se
+  // quiere generar un nuevo array transformado, sino ejecutar una acción por
+  // cada elemento del array, por lo que el foreach seria mas apropiado
+}
+
+document.querySelector("#title-button").addEventListener("click", () => {
+  filterElements("#title-input", "Title");
 });
 
 document.querySelector("#actor-button").addEventListener("click", () => {
-  clearCards();
-  const searchText = document.querySelector("#actor-input").value;
-  const filteredMovies = movies.filter((movie) =>
-    movie.Actors.toUpperCase().includes(searchText.trim().toUpperCase())
-  );
-  filteredMovies.forEach((movie) => {
-    generateCard(movie);
-  });
+  filterElements("#actor-input", "Actors");
 });
 
-document.querySelector("#genre-select").addEventListener("change", (event) => {
-  clearCards();
-  const filteredMovies = movies.filter((movie) =>
-    movie.Genre.toUpperCase().includes(event.target.value.toUpperCase())
-  );
-  filteredMovies.forEach((movie) => {
-    generateCard(movie);
-  });
+document.querySelector("#genre-select").addEventListener("change", () => {
+  filterElements("#genre-select", "Genre");
 });
 
 document.querySelector("#year-button").addEventListener("click", () => {
-  clearCards();
-  const searchText = document.querySelector("#year-input").value;
-  const filteredMovies = movies.filter((movie) =>
-    movie.Year.toUpperCase().includes(searchText.trim().toUpperCase())
-  );
-  filteredMovies.forEach((movie) => {
-    generateCard(movie);
-  });
+  filterElements("#year-input", "Year");
 });
 
-
-let orderedMovies = () => {
-  movies.sort((movie1, movie2) => {
+let orderedMovies = (movieList) => {
+  movieList.sort((movie1, movie2) => {
     return parseInt(movie1.Runtime) - parseInt(movie2.Runtime);
   });
-  return movies;
-}
+  return movieList;
+};
 
 document.querySelector("#runtime-button").addEventListener("click", () => {
   clearCards();
-  const selectionOrder = document.querySelector('input[name="runtime"]:checked').value;
-  let movieList;
-  if (selectionOrder === 'runtime-asc') {
-    movieList = orderedMovies().reverse();
+  const selectionOrder = document.querySelector(
+    'input[name="runtime"]:checked'
+  ).value;
+  if (selectionOrder === "runtime-asc") {
+    filteredMovies = orderedMovies(filteredMovies);
   } else {
-    movieList = orderedMovies();
+    filteredMovies = orderedMovies(filteredMovies).reverse();
   }
-  movieList.forEach((movie) => {
+  filteredMovies.forEach((movie) => {
     generateCard(movie);
   });
 });
