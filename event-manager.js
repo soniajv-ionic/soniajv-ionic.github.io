@@ -7,7 +7,7 @@
 function filterElements(idSearchComponent, nameAtributeSearch) {
   clearCards();
   const searchText = document.querySelector(idSearchComponent).value;
-  filteredMovies = allMovies.filter((movie) =>
+  filteredMovies = movies.filter((movie) =>
     movie[nameAtributeSearch]
       .toUpperCase()
       .includes(searchText.trim().toUpperCase())
@@ -57,4 +57,11 @@ document.querySelector("#runtime-button").addEventListener("click", () => {
   filteredMovies.forEach((movie) => {
     generateCard(movie);
   });
+});
+
+//
+
+document.querySelector("#movie-title-button").addEventListener("click", () => {
+  const searchText = document.querySelector("#movie-title-input").value;
+  doGetRequest(`${COMMON_REQUEST}s=${searchText}`, processMovie);
 });

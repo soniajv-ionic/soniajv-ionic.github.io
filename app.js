@@ -2,12 +2,12 @@ const URL = "https://soniajv-ionic.github.io/movies-250.json";
 const API_KEY = "ce56ccb0";
 const COMMON_REQUEST = `http://www.omdbapi.com/?apikey=${API_KEY}&`;
 
-let allMovies;
+let movies;
 let filteredMovies;
 
 function generateCard(movie) {
   // 0. Se cambia el contador de número de peliculas
-  document.querySelector(".movie-counter").textContent = filteredMovies.length;
+  //  document.querySelector(".movie-counter").textContent = filteredMovies.length;
 
   //1. Crear la tarjeta
   const newCard = document.createElement("div"); //Crea un elemento de tipo div
@@ -84,12 +84,22 @@ function generateGenre(movies) {
     document.querySelector("#genre-select").appendChild(genreOption);
   });
 }
-
+/*
 function processMovie(data) {
   allMovies = data.movies; // Son los datos de la peliculas que vienen del json
   filteredMovies = Array.from(allMovies);
   generateGenre(allMovies);
   allMovies.forEach((movie) => {
+    generateCard(movie);
+  });
+}*/
+
+function processMovie(data) {
+  movies = data.Search;
+  console.log(movies);
+  //filteredMovies = Array.from(movies);
+  //generateGenre(movies);
+  movies.forEach((movie) => {
     generateCard(movie);
   });
 }
@@ -98,4 +108,4 @@ function clearCards() {
   document.querySelectorAll(".movie-card").forEach((card) => card.remove());
 }
 
-doGetRequest(URL, processMovie);
+//doGetRequest(URL, processMovie);
