@@ -5,7 +5,7 @@ body {
   background-color: #370303;
 }
 
-.header {
+.header, .search-movie {
   display: flex;
   justify-content: center;
   align-items: center;
