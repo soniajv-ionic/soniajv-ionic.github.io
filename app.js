@@ -1,5 +1,5 @@
-// const URL = "https://soniajv-ionic.github.io/movies-250.json";
-const API_KEY = 'ce56ccb0';
+const URL = "https://soniajv-ionic.github.io/movies-250.json";
+const API_KEY = "ce56ccb0";
 const COMMON_REQUEST = `http://www.omdbapi.com/?apikey=${API_KEY}&`;
 
 let allMovies;

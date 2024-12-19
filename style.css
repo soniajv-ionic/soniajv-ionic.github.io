@@ -5,7 +5,7 @@ body {
   background-color: #370303;
 }
 
-.header, .search-movie {
+.header {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -34,6 +34,16 @@ body {
 
 .header button:hover {
   background-color: #0056b3;
+}
+
+.search-movie,
+.runtime {
+  flex-basis: 100%; /* Ocupa toda la fila */
+  text-align: center; /* Centra el contenido */
+}
+
+#movie-title-input {
+  width: 60%;
 }
 
 .page-title h1 {
