@@ -11,3 +11,4 @@ function doGetRequest(url, processData) {
     })
     .catch((error) => console.error("Fetch error:", error));
 }
+

@@ -62,6 +62,8 @@ document.querySelector("#runtime-button").addEventListener("click", () => {
 //
 
 document.querySelector("#movie-title-button").addEventListener("click", () => {
+  clearCards();
   const searchText = document.querySelector("#movie-title-input").value;
-  doGetRequest(`${COMMON_REQUEST}s=${searchText}`, processMovie);
+  doGetRequest(`${COMMON_REQUEST}s=${searchText}`, fillArray);
+  
 });

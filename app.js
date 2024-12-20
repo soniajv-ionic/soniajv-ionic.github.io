@@ -1,13 +1,14 @@
 const URL = "https://soniajv-ionic.github.io/movies-250.json";
 const API_KEY = "ce56ccb0";
 const COMMON_REQUEST = `http://www.omdbapi.com/?apikey=${API_KEY}&`;
+// API: http://www.omdbapi.com/?apikey=ce56ccb0&s="superman"`;
 
 let movies;
 let filteredMovies;
 
 function generateCard(movie) {
   // 0. Se cambia el contador de número de peliculas
-  //  document.querySelector(".movie-counter").textContent = filteredMovies.length;
+  //document.querySelector(".movie-counter").textContent = filteredMovies.length;
 
   //1. Crear la tarjeta
   const newCard = document.createElement("div"); //Crea un elemento de tipo div
@@ -94,10 +95,25 @@ function processMovie(data) {
   });
 }*/
 
+
+function fillArray(data) {
+  let resultados = parseInt(data.totalResults);
+  let numPages = Math.ceil(resultados/10)
+
+  for (let i = 1; i < numPages; i++) {
+    doGetRequest(`${COMMON_REQUEST}s=${movieTitle(titles)}&page=${numPages}`, processMovie);
+  }
+
+}
+
+
 function processMovie(data) {
   movies = data.Search;
   console.log(movies);
   //filteredMovies = Array.from(movies);
+
+  
+
   //generateGenre(movies);
   movies.forEach((movie) => {
     generateCard(movie);
@@ -108,4 +124,12 @@ function clearCards() {
   document.querySelectorAll(".movie-card").forEach((card) => card.remove());
 }
 
+const titles = ["Avengers", "Batman", "Superman", "Rambo", "Indiana", "Goonies", "Doctor Who"];
+
+let movieTitle = (list) => {
+  const randomIndex = Math.floor(Math.random() * list.length);
+  return titles[randomIndex];
+}
+
 //doGetRequest(URL, processMovie);
+doGetRequest(`${COMMON_REQUEST}s=${movieTitle(titles)}`, processMovie);
