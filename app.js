@@ -1,10 +1,10 @@
 const URL = "https://soniajv-ionic.github.io/movies-250.json";
 const API_KEY = "ce56ccb0";
-const COMMON_REQUEST = `http://www.omdbapi.com/?apikey=${API_KEY}&`;
-// API: http://www.omdbapi.com/?apikey=ce56ccb0&s="superman"`;
+const URL_API = `http://www.omdbapi.com/?apikey=`; //`http://www.omdbapi.com/?apikey=${API_KEY}&`;
 
 let movies;
 let filteredMovies;
+let currentPage = 1;
 
 function generateCard(movie) {
   // 0. Se cambia el contador de número de peliculas
@@ -58,19 +58,22 @@ function generateCard(movie) {
   newParagraphGenre.appendChild(movieGenre);
 
   // 8. Crear la duración <p><strong>Duración: </strong>122 min</p>
-  const newParagraphRuntime = document.createElement("p");
+  /*const newParagraphRuntime = document.createElement("p");
   const newBoldRuntime = document.createElement("strong");
   newParagraphRuntime.appendChild(newBoldRuntime);
   newBoldRuntime.textContent = "Duración: ";
   newContent.appendChild(newParagraphRuntime);
   const runtime = document.createTextNode(movie.Runtime);
-  newParagraphRuntime.appendChild(runtime);
+  newParagraphRuntime.appendChild(runtime);*/
 
   // 9. Se agrega la ficha al contenedor de peliculas
   document.querySelector(".movie-container").appendChild(newCard);
 }
-
+/*
 function generateGenre(movies) {
+  // Se limpia el desplegable
+  document.querySelector("#genre-select").forEach((option) => option.remove());
+  // Se extraen lo generos
   let setGenre = new Set();
   movies.forEach((movie) => {
     let genres = movie.Genre.split(",").map((genre) => genre.trim());
@@ -81,10 +84,10 @@ function generateGenre(movies) {
   arrayGenre.sort().forEach((genre) => {
     let genreOption = document.createElement("option");
     genreOption.setAttribute("value", genre.toLowerCase());
-    genreOption.textContent = genre;
+    genreOption.textContent = genre.charAt(0).toUpperCase() + genre.slice(1);
     document.querySelector("#genre-select").appendChild(genreOption);
   });
-}
+} */
 /*
 function processMovie(data) {
   allMovies = data.movies; // Son los datos de la peliculas que vienen del json
@@ -95,24 +98,12 @@ function processMovie(data) {
   });
 }*/
 
-
-function fillArray(data) {
-  let resultados = parseInt(data.totalResults);
-  let numPages = Math.ceil(resultados/10)
-
-  for (let i = 1; i < numPages; i++) {
-    doGetRequest(`${COMMON_REQUEST}s=${movieTitle(titles)}&page=${numPages}`, processMovie);
-  }
-
-}
-
-
 function processMovie(data) {
+  renderPaginationControls(Math.ceil(data.totalResults / 10));
+  clearCards();
   movies = data.Search;
   console.log(movies);
-  //filteredMovies = Array.from(movies);
-
-  
+  filteredMovies = Array.from(movies);
 
   //generateGenre(movies);
   movies.forEach((movie) => {
@@ -124,12 +115,40 @@ function clearCards() {
   document.querySelectorAll(".movie-card").forEach((card) => card.remove());
 }
 
-const titles = ["Avengers", "Batman", "Superman", "Rambo", "Indiana", "Goonies", "Doctor Who"];
+function renderPaginationControls(totalPages) {
+  const controlsContainer = document.getElementById("pagination-controls");
+  controlsContainer.innerHTML = "";
+
+  for (let i = 1; i <= totalPages; i++) {
+    const button = document.createElement("button");
+    button.classList.add("pagination-button");
+    button.innerText = i;
+    //button.disabled = i === currentPage;
+    if (i === currentPage) {
+      button.classList.add("active");
+      button.disabled = true;
+    }
+    button.addEventListener("click", () => {
+      currentPage = i;
+      getMoviesFromOMDB(currentPage);
+    });
+    controlsContainer.appendChild(button);
+  }
+}
+
+const titles = [
+  "Avengers",
+  "Batman",
+  "Superman",
+  "Rambo",
+  "Indiana",
+  "Goonies",
+  "Doctor Who",
+];
 
 let movieTitle = (list) => {
   const randomIndex = Math.floor(Math.random() * list.length);
   return titles[randomIndex];
-}
+};
 
-//doGetRequest(URL, processMovie);
-doGetRequest(`${COMMON_REQUEST}s=${movieTitle(titles)}`, processMovie);
+doGetRequest(`${URL_API}${API_KEY}&s=${movieTitle(titles)}`, processMovie);

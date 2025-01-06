@@ -37,6 +37,7 @@ body {
 }
 
 .search-movie,
+.pagination,
 .runtime {
   flex-basis: 100%; /* Ocupa toda la fila */
   text-align: center; /* Centra el contenido */
@@ -93,7 +94,7 @@ body {
 
 .movie-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   /* 4 columnas en pantallas grandes */
   width: 100%;
   gap: 20px;
@@ -117,4 +118,24 @@ body {
     grid-template-columns: 1fr;
     /* 1 tarjeta por fila en pantallas pequeñas */
   }
+}
+
+.pagination-button {
+  background-color: #f1f1f1;
+  color: black;
+  border: 1px solid #ccc;
+  padding: 10px 20px;
+  margin: 10px 5px 30px 5px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 1.5rem;
+}
+
+.pagination-button:hover {
+  background-color: #ddd;
+}
+
+.pagination-button.active {
+  background-color: #4caf50;
+  color: white;
 }
