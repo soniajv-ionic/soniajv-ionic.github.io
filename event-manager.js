@@ -7,6 +7,12 @@ function getMoviesFromOMDB(page = 1) {
   doGetRequest(newURL, processMovie);
 }
 
+function getMovieFromOMDB(movieId) {
+  let apikey = "ce56ccb0";
+  let movieURL = `${URL_API}${apikey}&i=${movieId}`;
+  doGetRequest(movieURL, processOneMovie);
+}
+
 /**
  * Función de búsqueda
  *

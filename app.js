@@ -36,7 +36,10 @@ function generateCard(movie) {
   newParagraphDirector.appendChild(newBoldDirector);
   newBoldDirector.textContent = "Director: ";
   newContent.appendChild(newParagraphDirector);
-  const nameDirector = document.createTextNode(movie.Director);
+  // const nameDirector = document.createTextNode(movie.Director);
+  ////////////////////////////////////////getMovieFromOMDB(movie.imdbID);
+  console.log("one movie" + oneMovie);
+  const nameDirector = document.createTextNode(oneMovie);
   newParagraphDirector.appendChild(nameDirector);
 
   // 6. Crear el año <p><strong>Año: </strong>1985</p>
@@ -109,6 +112,12 @@ function processMovie(data) {
   movies.forEach((movie) => {
     generateCard(movie);
   });
+}
+
+function processOneMovie(movieData) {
+  console.log("Datos recibidos:", movieData);
+  console.log(movieData.Director);
+  return movieData.Director;
 }
 
 function clearCards() {
